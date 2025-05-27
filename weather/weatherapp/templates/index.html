@@ -1,33 +1,41 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
 </head>
 <body>
 
-    <form method="POST">
-        {% csrf_token %}
-        <input type="text" name="city" placeholder="City">
-        <button type="submit">Search</button>
-    </form>
+    <div class="container">
+        <h1>Weather App</h1>
+    
 
-    <div class="weather">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="city" placeholder="City">
+            <button type="submit">Search</button>
+        </form>
 
-        <div class="left">
-            <h2>{{ temp }}°C</h2>
-            <h3>{{ city }}</h3>
-        </div>
+        <div class="weather">
 
-        <div class="right">
-            <div class="icon">
-                <p><img src="http://openweathermap.org/img/wn/{{ icon }}@2x.png" width="100px" height="100px"></p>
+            <div class="left">
+                <h2>{{ temp }}°C</h2>
+                <h3>{{ city }}</h3>
             </div>
-            <div class="condition">
-                <p>{{ description }}</p>
-                <p>{{ day|date:"M j, Y" }}</p>
+
+            <div class="right">
+                <div class="icon">
+                    <p><img src="http://openweathermap.org/img/wn/{{ icon }}@2x.png" width="100px" height="100px"></p>
+                </div>
+                <div class="condition">
+                    <p>{{ description }}</p>
+                    <p>{{ day|date:"M j, Y" }}</p>
+                </div>
             </div>
+
         </div>
 
     </div>

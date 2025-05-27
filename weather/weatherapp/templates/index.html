@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+</head>
+<body>
+
+    <form method="POST">
+
+        {%csrf_token%}
+        <input type="text" name="city" placeholder="Enter City">
+        <button type="submit">Search</button>
+
+    </form>
+
+    <h2>{{ temp }}°C</h2>
+    <h3>{{ city }}</h3>
+    <p>{{ description }}</p>
+    <p>
+        <img src="http://openweathermap.org/img/wn/{{ icon }}@2x.png" width="100px" height="100px">
+    </p>
+    <p>{{ day|date:"M j, Y" }}</p>
+    
+</body>
+</html>

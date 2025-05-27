@@ -7,12 +7,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather App</title>
 </head>
-<body>
-
+<body style="
+    background-image: url('{{ image_url }}');
+    background-size: cover;
+    background-position: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0; /* Fallback color if image fails */
+">
     <div class="container">
         <h1>Weather App</h1>
-    
-
         <form method="POST">
             {% csrf_token %}
             <input type="text" name="city" placeholder="City">
@@ -20,12 +24,10 @@
         </form>
 
         <div class="weather">
-
             <div class="left">
                 <h2>{{ temp }}°C</h2>
                 <h3>{{ city }}</h3>
             </div>
-
             <div class="right">
                 <div class="icon">
                     <p><img src="http://openweathermap.org/img/wn/{{ icon }}@2x.png" width="100px" height="100px"></p>
@@ -35,10 +37,15 @@
                     <p>{{ day|date:"M j, Y" }}</p>
                 </div>
             </div>
-
         </div>
-
     </div>
-    
+
+    {% if exception_occured %}
+    <script>
+        window.onload = function(){
+            alert("Error fetching weather data for '{{ city }}'. Showing weather data for 'Sri Lanka' instead.");
+        }
+    </script>
+    {% endif %}
 </body>
 </html>
